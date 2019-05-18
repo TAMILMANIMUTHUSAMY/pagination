@@ -1,7 +1,10 @@
 package com.hm.pagination.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hm.pagination.domain.Continent;
 import com.hm.pagination.domain.Country;
+import com.hm.pagination.pagination.PagingRequest;
 import com.hm.pagination.service.CountryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -42,13 +45,13 @@ public class CountryController {
 
     @GetMapping(path = "/page/{continent}")
     public Page<Country> getCountriesusingPage(@PathVariable("continent") Continent continent) {
-        return countryService.findAllByContinentusingPage(continent, PageRequest.of(0, PAGE_SIZE));
+        return countryService.findAllByContinentusingPage(continent, PagingRequest.of(1, PAGE_SIZE));
     }
 
     @GetMapping(path = "/page/{continent}/{pageNo}")
     public Page<Country> getCountriesByPageNousingPage(@PathVariable("continent") Continent continent, @PathVariable("pageNo") Integer pageNo) {
 
-        return countryService.findAllByContinentusingPage(continent, PageRequest.of(pageNo, PAGE_SIZE));
+        return countryService.findAllByContinentusingPage(continent, PagingRequest.of(pageNo, PAGE_SIZE));
     }
 
     @GetMapping(path = "/slice/{continent}")

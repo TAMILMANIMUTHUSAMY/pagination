@@ -1,4 +1,4 @@
-package com.hm.pagination.pagination.impl;
+package com.hm.pagination.pagination;
 
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -10,8 +10,14 @@ import org.springframework.data.domain.Pageable;
  */
 public interface PagingRequest {
 
-    static Pageable of(int page, int size) {
-        return PageRequest.of(page - 1, size);
+    int DEFAULT_SIZE = 10;
+
+    static Pageable of(Integer page, Integer size) {
+        return PageRequest.of(page - 1, size == null || size <= 0 ? DEFAULT_SIZE : size);
+    }
+
+    static Pageable of(Integer page) {
+        return PageRequest.of(page - 1, DEFAULT_SIZE);
     }
 
 }

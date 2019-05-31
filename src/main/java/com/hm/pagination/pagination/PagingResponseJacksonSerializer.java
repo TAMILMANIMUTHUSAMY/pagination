@@ -22,10 +22,10 @@ public class PagingResponseJacksonSerializer extends JsonSerializer<Page> {
         jsonGenerator.writeObjectField("content", pagingResponse.getContent());
         jsonGenerator.writeNumberField("totalPages", pagingResponse.getTotalPages());
         jsonGenerator.writeNumberField("totalElements", pagingResponse.getTotalElements());
-        jsonGenerator.writeNumberField("numberOfElements", pagingResponse.getNumberOfElements());
-        jsonGenerator.writeNumberField("pageSize", pagingResponse.getPageable().getPageSize());
-        jsonGenerator.writeNumberField("pageNumber", pagingResponse.getPageable().getPageNumber() + 1);
-        jsonGenerator.writeNumberField("offset", pagingResponse.getPageable().getOffset() + 1);
+        jsonGenerator.writeNumberField("curremtPageElementsSize", pagingResponse.getNumberOfElements());
+        jsonGenerator.writeNumberField("currentPageSize", pagingResponse.getPageable().getPageSize());
+        jsonGenerator.writeNumberField("currentPageNumber", pagingResponse.getPageable().getPageNumber() + 1);
+        jsonGenerator.writeNumberField("pageOffset", pagingResponse.getPageable().getOffset() + 1);
         jsonGenerator.writeEndObject();
     }
 
